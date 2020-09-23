@@ -1,11 +1,16 @@
-import Navbar from 'components/Navbar'
-import HomeContainer from 'containers/Home'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
-export default function Home() {
-  return (
-    <>
-      <Navbar />
-      <HomeContainer />
-    </>
-  )
+import useSpotifyToken from 'contexts/token'
+
+export default function Index() {
+  const { spotifyToken, generateToken } = useSpotifyToken()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!spotifyToken) generateToken()
+    else router.push('/home')
+  })
+
+  return null
 }

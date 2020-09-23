@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-
 import Filter from 'components/Filter'
+
+import useSpotifyToken from 'contexts/token'
 
 import api from 'api'
 
@@ -12,6 +13,7 @@ type CountryFilter = {
 
 function Home() {
   const [filters, setFilters] = useState([])
+  const { spotifyToken, generateToken, getTokenFromUrl } = useSpotifyToken()
 
   async function getCountries() {
     try {
@@ -30,8 +32,11 @@ function Home() {
   }
 
   useEffect(() => {
+    const token = spotifyToken || getTokenFromUrl()
+    if (!token) generateToken()
+
     getCountries()
-  }, [])
+  }, [spotifyToken, generateToken, getTokenFromUrl])
 
   return <Filter countries={filters} onChange={handleOptionsChange} />
 }

@@ -4,6 +4,7 @@ import Head from 'next/head'
 import GlobalStyles from 'styles/global'
 import { Theme } from 'styles/theme'
 import { ThemeProvider } from 'styled-components'
+import { SpotifyTokenProvider } from 'contexts/token'
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -20,7 +21,9 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
       <GlobalStyles />
       <ThemeProvider theme={Theme}>
-        <Component {...pageProps} />
+        <SpotifyTokenProvider>
+          <Component {...pageProps} />
+        </SpotifyTokenProvider>
       </ThemeProvider>
     </>
   )
