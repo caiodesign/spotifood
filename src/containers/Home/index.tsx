@@ -4,7 +4,7 @@ import Filter from 'components/Filter'
 
 import api from 'api'
 
-type Country = {
+type CountryFilter = {
   id: string
   name: string
   values: []
@@ -17,7 +17,7 @@ function Home() {
     try {
       const { data } = await api.getFilters()
       const onlyCountriesFilter = await data.filters.filter(
-        (arr: Country) => arr.id === 'country'
+        (arr: CountryFilter) => arr.id === 'country'
       )[0]
       setFilters(onlyCountriesFilter.values)
     } catch (err) {
@@ -25,11 +25,15 @@ function Home() {
     }
   }
 
+  function handleOptionsChange(value: string) {
+    console.log(value)
+  }
+
   useEffect(() => {
     getCountries()
   }, [])
 
-  return <Filter countries={filters} onClick={() => true} />
+  return <Filter countries={filters} onChange={handleOptionsChange} />
 }
 
 export default Home
