@@ -13,7 +13,7 @@ type CountryFilter = {
 
 function Home() {
   const [filters, setFilters] = useState([])
-  const { spotifyToken, generateToken, getTokenFromUrl } = useSpotifyToken()
+  const { spotifyToken, generateToken } = useSpotifyToken()
 
   async function getCountries() {
     try {
@@ -32,11 +32,10 @@ function Home() {
   }
 
   useEffect(() => {
-    const token = spotifyToken || getTokenFromUrl()
-    if (!token) generateToken()
+    if (!spotifyToken) generateToken()
 
     getCountries()
-  }, [spotifyToken, generateToken, getTokenFromUrl])
+  }, [spotifyToken, generateToken])
 
   return <Filter countries={filters} onChange={handleOptionsChange} />
 }
