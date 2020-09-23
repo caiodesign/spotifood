@@ -1,5 +1,11 @@
-import Main from 'components/Main'
+import Navbar from 'components/Navbar'
+import HomeContainer from 'containers/Home'
 
 export default function Home() {
-  return <Main />
+  return (
+    <>
+      <Navbar />
+      <HomeContainer />
+    </>
+  )
 }

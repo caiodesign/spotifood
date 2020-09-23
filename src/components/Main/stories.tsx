@@ -1,4 +1,4 @@
-import { withKnobs, text } from '@storybook/addon-knobs'
+import { withKnobs } from '@storybook/addon-knobs'
 import Main from '.'
 
 export default {
@@ -7,9 +7,11 @@ export default {
   decorators: [withKnobs]
 }
 
-export const Basic = () => (
-  <Main
-    title={text('Title', 'Storybook')}
-    description={text('Description', 'is Awesome')}
-  />
-)
+export const Basic = () => <Main />
+
+// export const Basic = () => (
+//   <Main
+//     title={text('Title', 'Storybook')}
+//     description={text('Description', 'is Awesome')}
+//   />
+// )
