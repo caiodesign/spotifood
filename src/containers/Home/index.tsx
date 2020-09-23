@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useEffectOnce } from 'react-use'
+
 import Filter from 'components/Filter'
 
-import useSpotifyToken from 'contexts/token'
+import useSpotify from 'contexts/spotify'
 
 import api from 'api'
 
@@ -13,7 +15,7 @@ type CountryFilter = {
 
 function Home() {
   const [filters, setFilters] = useState([])
-  const { spotifyToken, generateToken } = useSpotifyToken()
+  const { getFeaturedPlaylists } = useSpotify()
 
   async function getCountries() {
     try {
@@ -31,11 +33,10 @@ function Home() {
     console.log(value)
   }
 
-  useEffect(() => {
-    if (!spotifyToken) generateToken()
-
+  useEffectOnce(() => {
+    getFeaturedPlaylists()
     getCountries()
-  }, [spotifyToken, generateToken])
+  })
 
   return <Filter countries={filters} onChange={handleOptionsChange} />
 }

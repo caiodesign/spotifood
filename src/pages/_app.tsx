@@ -4,7 +4,7 @@ import Head from 'next/head'
 import GlobalStyles from 'styles/global'
 import { Theme } from 'styles/theme'
 import { ThemeProvider } from 'styled-components'
-import { SpotifyTokenProvider } from 'contexts/token'
+import { SpotifyTokenProvider } from 'contexts/spotify'
 
 function App({ Component, pageProps }: AppProps) {
   return (

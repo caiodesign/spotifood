@@ -1,16 +1,27 @@
+import { NextPageContext } from 'next'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import useSpotifyToken from 'contexts/token'
+import useSpotifyToken from 'contexts/spotify'
 
-export default function Index() {
-  const { spotifyToken, generateToken } = useSpotifyToken()
+type QueryCode = {
+  code: string
+}
+
+export default function Index({ code }: QueryCode) {
+  const { spotifyCode, generateCode, createCodeCookie } = useSpotifyToken()
   const router = useRouter()
 
   useEffect(() => {
-    if (!spotifyToken) generateToken()
-    else router.push('/home')
+    if (code) {
+      createCodeCookie(code)
+      router.push('/home')
+    } else if (!spotifyCode) {
+      generateCode()
+    }
   })
 
   return null
 }
+
+Index.getInitialProps = ({ query }: NextPageContext) => query
