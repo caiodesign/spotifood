@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
@@ -7,7 +8,6 @@ import * as S from './styles'
 
 type Props = {
   countries: Array<CountryType>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: (arg: any) => void
 }
 export type CountryType = {
@@ -15,7 +15,8 @@ export type CountryType = {
   name: string
 }
 
-function Filter({ countries = [], onChange }: Props) {
+function Filter({ countries, onChange }: Props) {
+  console.log(countries)
   return (
     <S.Filter>
       <FormControl>
@@ -24,11 +25,12 @@ function Filter({ countries = [], onChange }: Props) {
           labelId="countries-label"
           onChange={(e) => onChange(e.target.value)}
         >
-          {countries.map((country) => (
-            <MenuItem key={country.value} value={country.value}>
-              {country.name}
-            </MenuItem>
-          ))}
+          {countries.length &&
+            countries.map((country) => (
+              <MenuItem key={country.value} value={country.value}>
+                {country.name}
+              </MenuItem>
+            ))}
         </Select>
       </FormControl>
     </S.Filter>

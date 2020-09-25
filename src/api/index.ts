@@ -4,7 +4,7 @@ import qs from 'querystring'
 
 import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from 'config/constants'
 
-type FeaturedPlaylists = {
+export type FeaturedPlaylists = {
   token: string
   locale?: string
   country?: string
@@ -13,7 +13,7 @@ type FeaturedPlaylists = {
   offset?: string
 }
 
-type SpotifyAccessToken = {
+export type SpotifyAccessToken = {
   code: string
   redirectUri?: string
 }
