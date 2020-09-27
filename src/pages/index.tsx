@@ -24,4 +24,5 @@ export default function Index({ code }: QueryCode) {
   return null
 }
 
-Index.getInitialProps = ({ query }: NextPageContext) => query
+Index.getInitialProps = ({ query }: NextPageContext) =>
+  query.code ? query : { code: false }

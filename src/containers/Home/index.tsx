@@ -51,7 +51,7 @@ function Home() {
 
   useEffect(() => {
     if (Object.keys(filters).length) getFeaturedPlaylists()
-  }, [filters, getFeaturedPlaylists])
+  }, [filters])
 
   return (
     <Filter

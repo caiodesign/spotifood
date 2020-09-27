@@ -16,22 +16,22 @@ export type CountryType = {
 }
 
 function Filter({ countries, onChange }: Props) {
-  console.log(countries)
   return (
     <S.Filter>
       <FormControl>
         <InputLabel id="countries-label">Countries</InputLabel>
-        <Select
-          labelId="countries-label"
-          onChange={(e) => onChange(e.target.value)}
-        >
-          {countries.length &&
-            countries.map((country) => (
+        {countries.length && (
+          <Select
+            labelId="countries-label"
+            onChange={(e) => onChange(e.target.value)}
+          >
+            {countries.map((country) => (
               <MenuItem key={country.value} value={country.value}>
                 {country.name}
               </MenuItem>
             ))}
-        </Select>
+          </Select>
+        )}
       </FormControl>
     </S.Filter>
   )
