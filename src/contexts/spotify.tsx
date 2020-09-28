@@ -26,6 +26,9 @@ export function SpotifyTokenProvider({ children }: AuxProps) {
   const spotifyCode = Cookies.get('spotify-code') || ''
 
   function generateCode() {
+    deleteExpiredCodeCookie()
+    deleteExpiredAccessTokenCookie()
+
     const spotifyRedirect = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(
       REDIRECT_URI
     )}`
@@ -39,6 +42,10 @@ export function SpotifyTokenProvider({ children }: AuxProps) {
 
   function createCodeCookie(code: string) {
     Cookies.set('spotify-code', code)
+  }
+
+  function deleteExpiredAccessTokenCookie() {
+    Cookies.remove('spotify-access-token')
   }
 
   function handleAccessToken(token: string) {
