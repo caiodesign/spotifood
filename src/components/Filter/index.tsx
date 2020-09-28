@@ -1,8 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
+import {
+  Select,
+  InputLabel,
+  MenuItem,
+  Input,
+  InputAdornment
+} from '@material-ui/core'
+import AccountCircle from '@material-ui/icons/AccountCircle'
 
 import * as S from './styles'
 
@@ -19,6 +24,14 @@ function Filter({ countries, onChange }: Props) {
   return (
     <S.Filter>
       <FormControl>
+        <Input
+          id="input-with-icon-adornment"
+          startAdornment={
+            <InputAdornment position="start">
+              <AccountCircle />
+            </InputAdornment>
+          }
+        />
         <InputLabel id="countries-label">Countries</InputLabel>
         {countries.length && (
           <Select
