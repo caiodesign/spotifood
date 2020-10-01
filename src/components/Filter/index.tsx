@@ -1,14 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import FormControl from '@material-ui/core/FormControl'
-import {
-  Select,
-  InputLabel,
-  MenuItem,
-  Input,
-  InputAdornment
-} from '@material-ui/core'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-
 import * as S from './styles'
 
 type Props = {
@@ -23,29 +13,21 @@ export type CountryType = {
 function Filter({ countries, onChange }: Props) {
   return (
     <S.Filter>
-      <FormControl>
-        <Input
-          id="input-with-icon-adornment"
-          startAdornment={
-            <InputAdornment position="start">
-              <AccountCircle />
-            </InputAdornment>
-          }
-        />
-        <InputLabel id="countries-label">Countries</InputLabel>
-        {countries.length && (
-          <Select
-            labelId="countries-label"
-            onChange={(e) => onChange(e.target.value)}
-          >
+      <S.Form>
+        <S.FormControl deskWidth="68%">
+          <input id="search" placeholder="Search ..." />
+        </S.FormControl>
+        <S.FormControl deskWidth="31%">
+          <select>
+            <option value="all">All countries</option>
             {countries.map((country) => (
-              <MenuItem key={country.value} value={country.value}>
+              <option key={country.value} value={country.value}>
                 {country.name}
-              </MenuItem>
+              </option>
             ))}
-          </Select>
-        )}
-      </FormControl>
+          </select>
+        </S.FormControl>
+      </S.Form>
     </S.Filter>
   )
 }
