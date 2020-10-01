@@ -1,7 +1,8 @@
 {
-  "name": "backstage-boilerplate",
+  "name": "spotifood",
   "version": "0.1.0",
   "private": true,
+  "author": "Caio Oliveira",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
