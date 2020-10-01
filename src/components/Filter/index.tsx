@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { SyntheticEvent } from 'react'
 import * as S from './styles'
 
 type Props = {
@@ -11,13 +12,17 @@ export type CountryType = {
 }
 
 function Filter({ countries, onChange }: Props) {
+  function handleSubmit(event: SyntheticEvent) {
+    event.preventDefault()
+  }
+
   return (
     <S.Filter>
-      <S.Form>
-        <S.FormControl deskWidth="68%">
+      <S.Form onSubmit={handleSubmit}>
+        <S.FormControl deskWidth="58%">
           <input id="search" placeholder="Search ..." />
         </S.FormControl>
-        <S.FormControl deskWidth="31%">
+        <S.FormControl deskWidth="41%">
           <select>
             <option value="all">All countries</option>
             {countries.map((country) => (

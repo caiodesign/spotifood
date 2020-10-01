@@ -14,9 +14,15 @@ export const Filter = styled.div`
 
 export const Form = styled.form`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   color: ${({ theme }) => theme.color.white};
+
+  ${media.greaterThan('medium')`
+      flex-direction: row;
+      justify-content: space-between;
+    `}
 `
 
 export const FormControl = styled.div<Props>`
@@ -41,6 +47,7 @@ export const FormControl = styled.div<Props>`
     `}
 
   ${media.lessThan<Props>('medium')`
+      margin: 2rem 0;
       width: ${({ mobileWidth }) => mobileWidth || '100%'};
     `}
 `

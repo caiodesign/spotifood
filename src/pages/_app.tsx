@@ -6,6 +6,8 @@ import { Theme } from 'styles/theme'
 import { ThemeProvider } from 'styled-components'
 import { SpotifyTokenProvider } from 'contexts/spotify'
 
+import Navbar from 'components/Navbar'
+
 function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -22,6 +24,7 @@ function App({ Component, pageProps }: AppProps) {
       <GlobalStyles />
       <ThemeProvider theme={Theme}>
         <SpotifyTokenProvider>
+          <Navbar />
           <Component {...pageProps} />
         </SpotifyTokenProvider>
       </ThemeProvider>
