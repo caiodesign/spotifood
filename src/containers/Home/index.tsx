@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react'
 import { useEffectOnce } from 'react-use'
 
 import Filter from 'components/Filter'
-
+import Wrapper from 'components/Wrapper'
+import PlaylistCard from 'components/PlaylistCard'
 import useSpotify from 'contexts/spotify'
-
 import api from 'api'
+
+import * as S from './styles'
 
 type SingleFilterType = {
   id: string
@@ -22,7 +24,7 @@ type CountryType = {
 
 function Home() {
   const [filters, setFilters] = useState<any>({})
-  const { getFeaturedPlaylists } = useSpotify()
+  const { getFeaturedPlaylists, playlists } = useSpotify()
 
   function manipulateFilterApiDataIntoObject(filters: Array<SingleFilterType>) {
     return filters.reduce((state, currentFilter) => {
@@ -54,10 +56,26 @@ function Home() {
   }, [filters])
 
   return (
-    <Filter
-      countries={filters?.country?.values ?? []}
-      onChange={handleOptionsChange}
-    />
+    <>
+      <Filter
+        countries={filters?.country?.values ?? []}
+        onChange={handleOptionsChange}
+      />
+      <S.Container>
+        {Boolean(playlists.length) && (
+          <Wrapper title="Featured playlists">
+            {playlists.map((playlist) => (
+              <PlaylistCard
+                url={playlist.external_urls.spotify}
+                image={playlist.images[0].url}
+                name={playlist.name}
+                description={playlist.description}
+              />
+            ))}
+          </Wrapper>
+        )}
+      </S.Container>
+    </>
   )
 }
 

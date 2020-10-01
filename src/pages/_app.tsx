@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components'
 import { SpotifyTokenProvider } from 'contexts/spotify'
 
 import Navbar from 'components/Navbar'
+import Footer from 'components/Footer'
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -26,6 +27,7 @@ function App({ Component, pageProps }: AppProps) {
         <SpotifyTokenProvider>
           <Navbar />
           <Component {...pageProps} />
+          <Footer />
         </SpotifyTokenProvider>
       </ThemeProvider>
     </>

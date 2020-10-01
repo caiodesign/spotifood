@@ -1,4 +1,4 @@
-import { withKnobs } from '@storybook/addon-knobs'
+import { withKnobs, text } from '@storybook/addon-knobs'
 import Navbar from '.'
 
 export default {
@@ -7,4 +7,4 @@ export default {
   decorators: [withKnobs]
 }
 
-export const Basic = () => <Navbar />
+export const Basic = () => <Navbar logo={text('logo', 'Spotifood')} />

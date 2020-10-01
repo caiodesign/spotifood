@@ -11,6 +11,9 @@ const GlobalStyles = createGlobalStyle`
   }
   html, body, #__next {
     height: 100%;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
   }
   body {
     font-family: 'Roboto', sans-serif;

@@ -21,8 +21,8 @@ export const Theme: DefaultTheme = {
   color: {
     dark: '#12192c',
     black: '#171e31',
-    green: '#171e31',
-    pink: '#171e31',
+    green: '#3bbb6d',
+    pink: '#ff446c',
     white: '#fafafa',
     grey: '#9ea4b4'
   }

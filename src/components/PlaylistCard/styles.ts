@@ -14,14 +14,20 @@ export const Card = styled.div`
   border-radius: 0.4rem;
 `
 
-export const Image = styled.div`
+export const ImageWrapper = styled.div`
   width: 100%;
-  min-width: 15.2rem;
-  min-height: 15.2rem;
+  position: relative;
+`
 
-  img {
-    width: 100%;
-  }
+export const PlaceholderImage = styled.img`
+  width: 100%;
+`
+
+export const PlaylistImage = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 `
 
 export const Title = styled.p`
@@ -40,4 +46,5 @@ export const Description = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-height: 2.6rem;
 `

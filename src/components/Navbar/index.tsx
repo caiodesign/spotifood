@@ -1,9 +1,9 @@
 import * as S from './styles'
 
-function Navbar() {
+function Navbar({ logo = 'Spotifood' }: { logo?: string }) {
   return (
     <S.Navbar>
-      <S.Logo>Spotifood</S.Logo>
+      <S.Logo>{logo}</S.Logo>
     </S.Navbar>
   )
 }

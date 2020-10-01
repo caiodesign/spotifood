@@ -15,6 +15,22 @@ type ContextType = {
   createCodeCookie: (code: string) => void
   generateAccessToken: () => Promise<string>
   getFeaturedPlaylists: () => Promise<unknown>
+  playlists: Playlist[]
+}
+
+type Playlist = {
+  external_urls: ExternalUrls
+  name: string
+  description: string
+  images: Images[]
+}
+
+type ExternalUrls = {
+  spotify: string
+}
+
+type Images = {
+  url: string
 }
 
 const TokenContext = createContext({} as ContextType)
@@ -23,6 +39,8 @@ export function SpotifyTokenProvider({ children }: AuxProps) {
   const [spotifyAccessToken, setSpotifyAccessToken] = useState(
     Cookies.get('spotify-access-token') || ''
   )
+  const [playlists, setPlaylists] = useState([])
+
   const spotifyCode = Cookies.get('spotify-code') || ''
 
   function generateCode() {
@@ -81,6 +99,8 @@ export function SpotifyTokenProvider({ children }: AuxProps) {
         token
       })
 
+      if (data.playlists.items.length) setPlaylists(data.playlists.items)
+
       return data
     } catch (err) {
       console.log(err)
@@ -96,7 +116,8 @@ export function SpotifyTokenProvider({ children }: AuxProps) {
         generateCode,
         createCodeCookie,
         generateAccessToken,
-        getFeaturedPlaylists
+        getFeaturedPlaylists,
+        playlists
       }}
     >
       {children}
