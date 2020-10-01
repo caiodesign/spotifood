@@ -1,4 +1,7 @@
-bstage is a NextJS boilerplate with the most used technologies for create powerful and scalable React apps!!
+## About
+
+Spotifood is a small application that uses Spotify Web API to get a list of featured playlists from Spotify.
+obs: This Project is for study purposes only.
 
 ## What's included
 - TypeScript
@@ -15,12 +18,12 @@ bstage is a NextJS boilerplate with the most used technologies for create powerf
 
 ## Getting Started
 
-First, clone or create your own app using `create-next-app`
+First, access the project directory and install all dependencies using:
 
 ```bash
-$ npx create-next-app -e https://github.com/caiodesign/bstage-boilerplate
+$ npm install
 # or
-$ yarn create next-app -e https://github.com/caiodesign/bstage-boilerplate
+$ yarn
 ```
 
 Run the development server:
@@ -60,7 +63,7 @@ $ yarn storybook
 ```
 Open [http://localhost:6006](http://localhost:6006) with your browser to see the result.
 
-You can build using 
+You can build using
 ```bash
 $ npm run build-storybook
 # or
