@@ -5,6 +5,7 @@ import { useEffectOnce } from 'react-use'
 import Filter from 'components/Filter'
 import Wrapper from 'components/Wrapper'
 import PlaylistCard from 'components/PlaylistCard'
+import Loading from 'components/Loading'
 import useSpotify from 'contexts/spotify'
 import api from 'api'
 
@@ -62,7 +63,7 @@ function Home() {
         onChange={handleOptionsChange}
       />
       <S.Container>
-        {Boolean(playlists.length) && (
+        {playlists.length ? (
           <Wrapper title="Featured playlists">
             {playlists.map((playlist) => (
               <PlaylistCard
@@ -73,6 +74,8 @@ function Home() {
               />
             ))}
           </Wrapper>
+        ) : (
+          <Loading />
         )}
       </S.Container>
     </>
