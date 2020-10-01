@@ -6,6 +6,7 @@ type Props = {
   countries: Array<CountryType>
   onChange: (arg: any) => void
 }
+
 export type CountryType = {
   value: string
   name: string
@@ -20,10 +21,15 @@ function Filter({ countries, onChange }: Props) {
     <S.Filter>
       <S.Form onSubmit={handleSubmit}>
         <S.FormControl deskWidth="58%">
-          <input id="search" placeholder="Search ..." />
+          <input
+            id="search"
+            name="search"
+            placeholder="Search ..."
+            onChange={onChange}
+          />
         </S.FormControl>
         <S.FormControl deskWidth="41%">
-          <select>
+          <select name="select" onChange={onChange}>
             <option value="all">All countries</option>
             {countries.map((country) => (
               <option key={country.value} value={country.value}>
