@@ -1,20 +1,15 @@
 {
-  "name": "backstage - Boilerplate",
-  "short_name": "backstage",
+  "name": "spotifood",
+  "short_name": "spotifood",
   "icons": [
     {
-      "src": "/img/icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "/img/icon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "/img/playlist-image-placeholder.jpg",
+      "type": "image/jpg",
+      "sizes": "362x362"
     }
   ],
-  "background_color": "#06092B",
-  "description": "Boilerlate utilizando Typescript, React, NextJS e Styled Components!",
+  "background_color": "rgb(250, 250, 250)",
+  "description": "Spotifood",
   "display": "fullscreen",
   "start_url": "/",
   "theme_color": "#06092B"
