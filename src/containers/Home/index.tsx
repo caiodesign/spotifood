@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useEffectOnce } from 'react-use'
+import debounce from 'lodash.debounce'
 
 import Filter from 'components/Filter'
 import Wrapper from 'components/Wrapper'
@@ -27,6 +28,11 @@ function Home() {
   const [filters, setFilters] = useState<any>({})
   const { getFeaturedPlaylists, playlists } = useSpotify()
 
+  const debouncedGetPlaylistsByName = useCallback(
+    debounce((name: string) => getFeaturedPlaylists({ name }), 1000),
+    []
+  )
+
   function manipulateFilterApiDataIntoObject(filters: Array<SingleFilterType>) {
     return filters.reduce((state, currentFilter) => {
       return { ...state, [currentFilter.id]: currentFilter }
@@ -44,8 +50,17 @@ function Home() {
     }
   }
 
-  function handleOptionsChange(value: string) {
-    console.log(value)
+  function handleOptionsChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { target } = event
+
+    const method = {
+      search: (value: string) => debouncedGetPlaylistsByName(value),
+      select: (value: string) => getFeaturedPlaylists({ country: value })
+    }[target.name as 'search' | 'select']
+
+    if (!method) return getFeaturedPlaylists()
+
+    method(target.value)
   }
 
   useEffectOnce(() => {
@@ -67,8 +82,8 @@ function Home() {
           <Wrapper title="Featured playlists">
             {playlists.map((playlist) => (
               <PlaylistCard
-                url={playlist.external_urls.spotify}
-                image={playlist.images[0].url}
+                url={playlist.external_urls?.spotify}
+                image={playlist.images[0]?.url}
                 name={playlist.name}
                 description={playlist.description}
               />

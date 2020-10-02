@@ -5,6 +5,7 @@ import qs from 'querystring'
 import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from 'config/constants'
 
 export type FeaturedPlaylists = {
+  name?: string
   token: string
   locale?: string
   country?: string
@@ -52,5 +53,13 @@ export default {
           Authorization: `Basic ${btoa(`${CLIENT_ID}:${CLIENT_SECRET}`)}`
         }
       }
-    )
+    ),
+  getPlaylistsByName: async ({ token, name }: FeaturedPlaylists) =>
+    await axios.get('https://api.spotify.com/v1/search', {
+      headers: { Authorization: `Bearer ${token}` },
+      params: {
+        q: name ? encodeURI(name) : '',
+        type: 'playlist'
+      }
+    })
 }

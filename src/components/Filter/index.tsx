@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { SyntheticEvent } from 'react'
+import { FormEvent } from 'react'
 import * as S from './styles'
 
 type Props = {
@@ -13,7 +13,7 @@ export type CountryType = {
 }
 
 function Filter({ countries, onChange }: Props) {
-  function handleSubmit(event: SyntheticEvent) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
   }
 

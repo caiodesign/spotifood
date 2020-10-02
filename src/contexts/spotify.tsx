@@ -14,8 +14,13 @@ type ContextType = {
   generateCode: () => void
   createCodeCookie: (code: string) => void
   generateAccessToken: () => Promise<string>
-  getFeaturedPlaylists: () => Promise<unknown>
+  getFeaturedPlaylists: (props?: FeaturedPlaylists) => Promise<unknown>
   playlists: Playlist[]
+}
+
+type FeaturedPlaylists = {
+  country?: string
+  name?: string
 }
 
 type Playlist = {
@@ -52,6 +57,10 @@ export function SpotifyTokenProvider({ children }: AuxProps) {
     )}`
 
     window.location.replace(spotifyRedirect)
+  }
+
+  function getAccessToken() {
+    return spotifyAccessToken || Cookies.get('spotify-access-token') || ''
   }
 
   function deleteExpiredCodeCookie() {
@@ -91,13 +100,21 @@ export function SpotifyTokenProvider({ children }: AuxProps) {
     return ''
   }
 
-  async function getFeaturedPlaylists() {
-    const token = spotifyAccessToken || (await generateAccessToken())
+  async function getFeaturedPlaylists(props?: FeaturedPlaylists) {
+    const token = getAccessToken() || (await generateAccessToken())
+
+    const { name, country } = props || {}
 
     try {
-      const { data } = await api.getFeaturedPlaylists({
-        token
-      })
+      const { data } = !name
+        ? await api.getFeaturedPlaylists({
+            country,
+            token
+          })
+        : await api.getPlaylistsByName({
+            name: name,
+            token: getAccessToken()
+          })
 
       if (data.playlists.items.length) setPlaylists(data.playlists.items)
 
