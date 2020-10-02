@@ -3,6 +3,10 @@
 Spotifood is a small application that uses Spotify Web API to get a list of featured playlists from Spotify.
 obs: This Project is for study purposes only.
 
+## Demo
+[https://spotifood.caiodesign.vercel.app](https://spotifood.caiodesign.vercel.app/)
+
+
 ## What's included
 - TypeScript
 - NextJS
