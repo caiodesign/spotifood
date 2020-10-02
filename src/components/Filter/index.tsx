@@ -26,10 +26,15 @@ function Filter({ countries, onChange }: Props) {
             name="search"
             placeholder="Search ..."
             onChange={onChange}
+            data-testid="filter-input-search"
           />
         </S.FormControl>
         <S.FormControl deskWidth="41%">
-          <select name="select" onChange={onChange}>
+          <select
+            name="select"
+            onChange={onChange}
+            data-testid="filter-input-select"
+          >
             <option value="all">All countries</option>
             {countries.map((country) => (
               <option key={country.value} value={country.value}>
